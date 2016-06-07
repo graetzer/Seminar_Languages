@@ -1,0 +1,284 @@
+\documentclass[twoside,11pt,a4paper]{article}
+
+% packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx,curves,float,rotating}
+
+\usepackage{amsmath, amssymb, latexsym}  % math stuff
+\usepackage{amsopn}                             % um mathe operatoren zu deklarieren
+%\usepackage[ngerman]{babel}                     % otherwise use british or american
+\usepackage[british]{babel}
+\usepackage{theorem}                            % instead of \usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+
+% TODO remove before publishing
+\usepackage{color}
+
+% @ environment %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xspace}                             % context sensitive space after macros
+\makeatletter 
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+\def\eg{{e.g}\onedot} \def\Eg{{E.g}\onedot}
+\def\ie{{i.e}\onedot} \def\Ie{{I.e}\onedot}
+\def\cf{{c.f}\onedot} \def\Cf{{C.f}\onedot}
+\def\etc{{etc}\onedot} \def\vs{{vs}\onedot} 
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{{et al}\onedot}
+\def\zB{z.B\onedot} \def\ZB{Z.B\onedot}
+\def\dh{d.h\onedot} \def\Dh{D.h\onedot}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%	Macros fuer neue Umgebungen
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\Frac}[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newlength{\textwd}
+\newlength{\oddsidemargintmp}
+\newlength{\evensidemargintmp}
+\newcommand*{\hspaceof}[2]{\settowidth{\textwd}{#1}\mbox{\hspace{#2\textwd}}}
+\newlength{\textht}
+\newcommand*{\vspaceof}[3]{\settoheight{\textht}{#1}\mbox{\raisebox{#2\textht}{#3}}}
+\newcommand*{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+
+\newenvironment{deflist}[1][\quad]%
+{  \begin{list}{}{%
+      \renewcommand{\makelabel}[1]{\textbf{##1}\hfil}%
+      \settowidth{\labelwidth}{\textbf{#1}}%
+      \setlength{\leftmargin}{\labelwidth}
+      \addtolength{\leftmargin}{\labelsep}}}
+{  \end{list}}
+
+
+\newenvironment{Quote}% Definition of Quote
+{  \begin{list}{}{%
+      \setlength{\rightmargin}{0pt}}
+      \item[]\ignorespaces}
+{\unskip\end{list}}
+
+
+\theoremstyle{break}
+\theorembodyfont{\itshape}	
+\theoremheaderfont{\scshape}
+
+\newtheorem{Cor}{Corollary}
+\newtheorem{Def}{Definition}
+%\newtheorem{Def}[Cor]{Definition}
+
+
+
+\newcolumntype{.}{D{.}{.}{-1}}
+
+
+\pagestyle{headings}
+\textwidth 15cm
+\textheight 23cm
+\oddsidemargin 1cm
+\evensidemargin 0cm
+%\parindent 0mm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%       Jetzt geht's los
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+%% Der Befehl \LARGE beschreibt die Font-Groesse. Fuer die Groesse des
+%% Schriftsatzes gibt es mehrere Befehle. Diese sind in aufsteigender
+%% Reihenfolge:
+%%
+%%	\tiny 		\normalsize	\huge
+%%	\scriptsize   	\large		\Huge
+%%	\footnotesize	\Large
+%%	\small		\LARGE
+%%
+%%
+%% Um den Font zu aendern, stehen folgende Befehle zur Verfuegung:
+%%
+%%	\textrm{}	roman font
+%%	\textsf{}	sans  serif
+%%	\texttt{}	typewriter
+%%	\textbf{}	bold series
+%%	\textit{}	italic		(kursiv)
+%%	\textsc{}	SMALL CAPS
+%%	\textnormal{}	typeset text in the normal font
+%%
+%%
+%% Mit dem Kommando \\  gibt man EXPLIZIT(!) an, dass man eine Zeile
+%% umbrechen will (wie gesagt, normalerweise macht LaTeX das selbst).
+%% Optional kann man hier \\ einen Wert angeben wie z.B. \\[4ex]
+%% Damit legt man fest, wieviel Zwischenraum bis zur naechsten
+%% Zeile bestehen soll. Das 'ex' steht fuer die Groesse des Symbols x.
+%% Hier kann man auch die Einheiten 'pt' fuer Punkte, cm, ... benutzen.
+%%
+%% Der \vfill Befehl fuegt soviel Leerraum ein, das der restliche Text
+%% bis an den unteren Rand gedrueckt wird (die Leerzeile davor wird
+%% benoetigt). Der \newpage Befehl erzeugt einen EXPLIZITEN(!) Seiten-
+%% umbruch. Da wir eine Leerseite haben wolllen wird mit '\ ' ein
+%% Space-Symbol auf die Seite eingefuegt, so dass wir wieder einen
+%% \newpage Befehl einsetzen koennen.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               Title
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+
+\begin{center}
+
+    Rheinisch-Westf\"alische Technische Hochschule Aachen \\
+    Lehrstuhl f\"ur Informatik 6 \\
+    Prof. Dr.-Ing. Hermann Ney\\[6ex]
+    Character-based Embeddings of Words with Recurrent Nets (for Neural Language Modeling)\\[12ex]  % auch Seminar Titel und Datum aendern!!!
+    SS 2016\\[6ex]
+   
+    \LARGE
+    \textbf{Character-based Embeddings of Words with Recurrent Nets} \\[6ex]
+    \textbf{Article} \\[6ex] % Changed this
+    \textit{Simon Gr\"atzer} \\[6ex]
+    \Large
+    Matrikelnummer 311673 \\[6ex]
+    23.05.2016
+
+    \vfill
+    \Large Betreuer: Kazuki Irie
+	    
+\end{center}
+
+\newpage
+\ 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               Inhaltsverzeichnis / Tabellenverzeichnis / Abbildungsverz.
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{headings}
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+\pagestyle{empty}
+\ 
+\newpage
+\pagestyle{headings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%               Inhalt
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/introduction}
+\input{chapters/neural_nets}
+\input{chapters/language_models}
+\input{chapters/bidir-lstm}
+\input{chapters/applications}
+
+% Dies ist ein laufender-Text mit Einsteins Formel $E = m \cdot c^2 $.
+
+% Eine etwas kompliziertere Formel:
+%\[
+%     a \Frac{1 - q^{n+1}} {1-q}  =  \sum_{i=0}^{n} aq^{n} \qquad
+%     \text{mit\ } \quad a,q \in \mathcal{R},  q \neq 1
+% \]
+
+%% Mit dem Befehl \mathcal erzeugt man ein kaligraphisches R im
+%% mathematischen Modus. Der Befehl \neq erzeugt ein Ungleichheits-
+%% Will man Formeln durchnumerieren, so kann man die equation-array
+%% Umgebung benutzen.
+%%
+
+
+
+
+
+\section{Conclusion}
+
+The model of composing word embeddings by composing characters shows that it is possible to avoid
+feature enginerring as well as costly lookup-tables.
+Using characters as the atomic unit of choice makes the model very simple to apply to many languages.
+As the experiments in~\cite{DBLP:journals/corr/LingLMAADBT15} show, lexical features can
+can be learned automatically by the language model. Large word lookup-tables
+can be reduced to one (much smaller) character lookup table, without sacrificing performance. 
+The model therefore avoids redundancies in word lookup tables. This is an additional advantage over
+morphenes as atomic units of words. The lookup table allows the model to scale better with
+larger amounts of data.
+
+
+%% Tabellen werden mit der tabular Umgebung erzeugt. Mit der table
+%% Umgebung werden wir unserer Tabelle zusaetzlich eine Ueberschrift
+%% geben und ihr mit \label einen symbolischen Namen zuordnen. Der
+%% Aufbau einer Tabelle ist wie folgt: zunaechst wird in das zweite
+%% Paar geschweifter Klammern eingetragen, wieviele Spalten man
+%% haben will (hier |l|c|r|  , also 3). Das l weist LaTeX an, dass
+%% die Eintraege der Spalte 1 linkbuendig, die der Spalte 2 zentriert
+%% und die Eintraege der Spalte 3 rechtsbuendig dargestellt werden.
+%% Das Symbol  |  steht fuer einen vertikalen Trennstrich. Laesst
+%% man diesen weg, so enthaelt die Tabelle an der entsprechenden
+%% Stelle auch keine Trennlinie mehr. Der Befehl \hline erzeugt eine
+%% horizontale Trennlinie und wird nach einem Zeilenumbruch \\
+%% angegeben.
+
+%% In der Umgebung zum Plazieren von Tabellen (und auch Grafiken) kann
+%% man optional die Werte t, b, h und H verwenden. Damit lassen sich
+%% Tabellen am oberen Rand (top), unten (bottom) und an der aktuellen
+%% Position (here) plazieren. Je nach Seitenlayout funktioniert die
+%% Angabe h nicht immer. Mittels H l\"asst sich dann die aktuelle
+%% Position erzwingen.
+
+%% \begin{table}%[H,h,t,b,p]
+%% \begin{center}
+%% \caption{Beispiel Tabelle} % Tabellen_�ber_schrift
+%% \label{tab:beispiel}
+%% \vspace{2ex}
+%% \begin{tabular}{|l|c|r|}
+%% \hline
+%% links		&	zentriert	&	rechts  \\ \hline\hline
+%% links2		&	zentriert2	&	rechts2 \\ \hline
+%% XXXXXXXXXXX	& XXXXXXXXXXXXXXXXXXXXX	& XXXXXXXXXXXX  \\ \hline
+
+%% \end{tabular}
+%% \end{center}
+%% \end{table}
+
+
+% \subsection{Unterabschnitt: Beispiel f\"ur Grafiken}
+%\begin{center}
+%	tgif \quad -print \quad -eps \quad $<$Datei$>$.obj
+%\end{center} 
+
+%\begin{figure}
+%\begin{center}
+%  \includegraphics[width=9cm]{./architektur}           % keine file extension angeben
+%  \caption{Architektur eines Spracherkennungssystems}  % Bild_unter_schrift
+%  \label{fig:Erkenner-Architektur}
+%\end{center}
+%\end{figure}
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{apalike}
+\bibliography{artikel}
+
+\end{document}
