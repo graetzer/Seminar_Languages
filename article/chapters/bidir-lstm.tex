@@ -40,8 +40,7 @@ breaking down words directly into characters.
 
 The first processing steps involves a table of $d_C$ parameters for each character from a predefined character alphabet $C$.
 Each word $w$ is decomposed into it's characters $c_1, \dots. c_m$.
-Every input character gets transformed into a $d_C$-dimensional feature vector $e_{c_j}^C$ from this table.
-These character feature vectors represent the properties of characters in the target language, for example consonants vs vowels.
+Every input character gets transformed into a real-valued feature vector representation $e_{c_j}^C \in \mathbb{R}^{d_C}$.
 The feacture vectors are stored in a projection layer $P_C \in \mathbb{R}^{d_C \times |C|}$ (Which is basically a lookup table for characters).
 For each $c_j$ we can define the projection of our character as $e_{c_j}^C = P_C * 1_{c_j}$. In this equation the $1_{c_j} \in {0, 1}^{d_C}$ 
 is a vector where all entries are zero except the entry corresponding to the index of the character$c_j$. 
@@ -51,35 +50,31 @@ in normal and reversed order.
 \subsection{Bidirectional LSTM Layer}
 \label{subsec:bi-lstm}
 
-The second layer of the C2W model is a bidirectional LSTM layer~\cite{DBLP:journals/nn/GravesS05}. This consists of two LSTM blocks:
+The second layer of the C2W model is a bidirectional LSTM layer~\cite{DBLP:journals/nn/GravesS05} as explained in section~\ref{subsec:bidir-rnn}. 
+This consists of two LSTM blocks:
 \begin{enumerate}
   \item The forward LSTM ($f$) which receives the sequence of character representations $e_{c_1}^C, \dots, e_{c_m}^C$
   \item The backward LSTM ($b$) which receives as input the reverse sequence $e_{c_m}^C, \dots, e_{c_1}^C$
 \end{enumerate}
-The two LSTM blocks yield the forward state sequence $s_{0}^f, \dots, s_{m}^f$ and backward state sequence $s_{m}^b, \dots, s_{0}^b$.
-The reason for using a bidirectional LSTM is explained in a more detail in section~\ref{subsec:bidir-rnn}. A shortened explanation is 
-that by supplying the network with the reversed input, it additionally gains access to previous context (previous characters).
- 
-The LSTM blocks are a little extended in comparison to the version introduced in section~\ref{subsec:lstm}.
-
-The equations therefore look a little different:
-% Given the input vectors x1,...,xm, a LSTM computes the state sequence h1, . . . , hm+1 by it- eratively applying the following updates:
+A LSTM has the parameter set $\mathcal{W} = \{W_{ix},\dots,W_{ch},b_i,\dots,b_o\}$,
+there are two separate parameter sets for each LSTM block: One for the forward LSTM ($\mathcal{W}^f$) and one for the backward ($\mathcal{W}^b$) LSTM.
+These basic equations are applied for every input character vector $e_{c_j}^C$, in the two LSTM blocks. 
+Each LSTM replaces the parameters with the ones from $\mathcal{W}^f$ or $\mathcal{W}^b$ respectively.
 \begin{equation}
 \begin{aligned}  
-  i_t &=\sigma(W_{ix} * x_t  + W_{ih} * h_{t-1} + W_{ic} * c_{t-1} + b_i) \\  
-  f_t &=\sigma(W_{fx} * x_t  + W_{fh} * h_{t-1} + W_{fc} * c_{t-1} + b_f) \\
-  o_t &=\sigma(W_{ox} * x_t  + W_{oh} * h_{t-1} + W_{oc} * c_t + b_o) \\  
-  c_t &= f_t \odot c_{t-1} + i_t \odot \tanh(W_{cx} * x_t  + W_{ch} * h_{t-1} + b_c) \\ 
-  h_t &= o_t \odot \tanh(c_t) 
+  i_j &=\sigma(W_{ix} * e_{c_j}^C  + W_{ih} * s_{t-1} + W_{ic} * c_{j-1} + b_i) \\  
+  f_j &=\sigma(W_{fx} * x_j  + W_{fh} * s_{j-1} + W_{fc} * c_{j-1} + b_f) \\
+  o_j &=\sigma(W_{ox} * x_j  + W_{oh} * s_{j-1} + W_{oc} * c_j + b_o) \\  
+  c_j &= f_j \odot c_{t-1} + i_j \odot \tanh(W_{cx} * x_j  + W_{ch} * s_{j-1} + b_c) \\ 
+  s_j &= o_j \odot \tanh(c_j) 
 \end{aligned}
 \end{equation}
-There are two seperate parameter sets for the LSTM block $\mathcal{W} = \{W_{ix},\dots,W_{ch},b_i,\dots,b_o\}$:
-One for the forward LSTM ($\mathcal{W}^f$) and one for the backward ($\mathcal{W}^b$) LSTM.
+The forward LSTM yields the forward state sequence $s_{0}^f, \dots, s_{m}^f$ and the backward LSTM yields the state sequence $s_{m}^b, \dots, s_{0}^b$.
 
-\subsubsection{Bidirectional Recurrent Neural Networks}
+\subsubsection{Bidirectional LSTM's}
 \label{subsec:bidir-rnn}
 
-The idea of a bidirectional recurrent neural network (BRNN) is to present every training sequence forwards and backwards to two separate
+The idea of a bidirectional recurrent neural network (BRNN) is to present every input sequence forwards and backwards to two separate
 recurrent neural networks~\cite{IEEE:journals/singals/Schuster1997}.
 Both networks are connected to the same output layer. This way the complete network has access to sequential information 
 about all inputs before and after the current one.
@@ -98,9 +93,11 @@ The net can decide to use as much or as little of the context as required.
 This can improve the results in sequence learning tasks, where the context can be previded in a "semi-online" fashion.
 For example in online speech recognition an output after every sentences is fine~\cite{DBLP:journals/nn/GravesS05}. 
 
+% Given the input vectors x1,...,xm, a LSTM computes the state sequence h1, . . . , hm+1 by it- eratively applying the following updates:
 
 
-\subsection{Output-Layer}
+
+\subsection{Combining Forward-Backward Features}
 
 Finally the last states of the forward sequence $s_{m}^f$ and the backwards sequence $s_{0}^b$
 are linearly combined into the resulting word embedding $e_{w}^C$:

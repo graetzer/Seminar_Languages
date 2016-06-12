@@ -1,0 +1,175 @@
+\RequireVersions{
+  *{application}{TeX}     {1990/03/25 v3.x}
+  *{format} {LaTeX2e}     {2016/03/31 v2.e}
+  *{class}  {article}     {2014/09/29 v1.4h}
+  *{file}   {size11.clo}  {2014/09/29 v1.4h}
+  *{package}{NeyDreuwSlides_Oct08}{2008/10/20. v1.11.}
+  *{package}{babel}       {2016/04/23 v3.9r}
+  *{file}   {english.ldf} {2012/08/20 v3.3p}
+  *{package}{ifthen}      {2014/09/29 v1.1c}
+  *{package}{xspace}      {2014/10/28 v1.13}
+  *{package}{graphicx}    {2014/10/28 v1.0g}
+  *{package}{keyval}      {2014/10/28 v1.15}
+  *{package}{graphics}    {2016/05/09 v1.0r}
+  *{package}{trig}        {2016/01/03 v1.10}
+  *{file}   {graphics.cfg}{2016/01/02 v1.10}
+  *{file}   {pdftex.def}  {2011/05/27 v0.06d}
+  *{package}{infwarerr}   {2016/05/16 v1.4}
+  *{package}{ltxcmds}     {2016/05/16 v1.23}
+  *{package}{epsfig}      {1999/02/16 v1.7a}
+  *{package}{textpos}     {2014/01/03 v1.7j}
+  *{package}{geometry}    {2010/09/12 v5.6}
+  *{package}{ifpdf}       {2016/05/14 v3.1}
+  *{package}{ifvtex}      {2016/05/16 v1.6}
+  *{package}{ifxetex}     {2010/09/12 v0.6}
+  *{package}{longtable}   {2014/10/28 v4.11}
+  *{package}{tabularx}    {2016/02/03 v2.11}
+  *{package}{array}       {2014/10/28 v2.4c}
+  *{package}{rotating}    {2009/03/28 v2.16a}
+  *{package}{colortbl}    {2012/02/13 v1.0a}
+  *{package}{color}       {1999/02/16 v0.0}
+  *{file}   {color.cfg}   {2016/01/02 v1.6}
+  *{package}{ragged2e}    {2009/05/21 v2.1}
+  *{package}{everysel}    {2011/10/28 v1.2}
+  *{package}{booktabs}    {2016/04/27 v1.618033}
+  *{package}{dcolumn}     {2014/10/28 v1.06}
+  *{package}{ucs}         {2013/05/11 v2.2}
+  *{file}   {uni-global.def}{2013/05/13 v0.0}
+  *{package}{inputenc}    {2015/03/17 v1.2c}
+  *{file}   {utf8.def}    {2016/02/28 v1.1s}
+  *{file}   {t1enc.dfu}   {2016/02/28 v1.1s}
+  *{file}   {ot1enc.dfu}  {2016/02/28 v1.1s}
+  *{file}   {omsenc.dfu}  {2016/02/28 v1.1s}
+  *{package}{fontenc}     {0000/00/00 v0.0}
+  *{file}   {t1enc.def}   {2005/09/27 v1.99g}
+  *{package}{times}       {2005/04/12 v9.2a}
+  *{package}{amsmath}     {2016/03/10 v2.15b}
+  *{package}{amstext}     {2000/06/29 v2.01}
+  *{package}{amsgen}      {1999/11/30 v2.0}
+  *{package}{amsbsy}      {1999/11/29 v1.2d}
+  *{package}{amsopn}      {2016/03/08 v2.02}
+  *{package}{amsthm}      {2015/03/04 v2.20.2}
+  *{package}{amssymb}     {2013/01/14 v3.01}
+  *{package}{amsfonts}    {2013/01/14 v3.01}
+  *{package}{latexsym}    {1998/08/17 v2.2e}
+  *{package}{xcolor}      {2004/07/04 v2.00}
+  *{file}   {color.cfg}   {2016/01/02 v1.6}
+  *{package}{paralist}    {2015/12/30 v2.5}
+  *{package}{hyperref}    {2016/05/05 v6.83n}
+  *{package}{hobsub-hyperref}{2016/05/16 v1.14}
+  *{package}{hobsub-generic}{2016/05/16 v1.14}
+  *{package}{hobsub}      {2016/05/16 v1.14}
+  *{package}{ifluatex}    {2016/05/16 v1.4}
+  *{package}{intcalc}     {2016/05/16 v1.2}
+  *{package}{etexcmds}    {2016/05/16 v1.6}
+  *{package}{kvsetkeys}   {2016/05/16 v1.17}
+  *{package}{kvdefinekeys}{2016/05/16 v1.4}
+  *{package}{pdftexcmds}  {2016/05/10 v0.21}
+  *{package}{pdfescape}   {2016/05/16 v1.14}
+  *{package}{bigintcalc}  {2016/05/16 v1.4}
+  *{package}{bitset}      {2016/05/16 v1.2}
+  *{package}{uniquecounter}{2016/05/16 v1.3}
+  *{package}{letltxmacro} {2016/05/16 v1.5}
+  *{package}{hopatch}     {2016/05/16 v1.3}
+  *{package}{xcolor-patch}{2016/05/16 v0.0}
+  *{package}{atveryend}   {2016/05/16 v1.9}
+  *{package}{atbegshi}    {2016/05/16 v1.17}
+  *{package}{refcount}    {2016/05/16 v3.5}
+  *{package}{hycolor}     {2016/05/16 v1.8}
+  *{package}{auxhook}     {2016/05/16 v1.4}
+  *{package}{kvoptions}   {2016/05/16 v3.12}
+  *{file}   {pd1enc.def}  {2016/05/05 v6.83n}
+  *{file}   {hyperref.cfg}{2002/06/06 v1.2}
+  *{package}{backref}     {2012/07/25 v1.38}
+  *{package}{rerunfilecheck}{2016/05/16 v1.8}
+  *{package}{url}         {2013/09/16 v3.4}
+  *{file}   {hpdftex.def} {2016/05/05 v6.83n}
+  *{package}{caption}     {2016/02/21 v3.3-144}
+  *{package}{caption3}    {2016/02/04 v1.7-139}
+  *{package}{ltcaption}   {2013/06/09 v1.4-94}
+  *{package}{fancyhdr}    {0000/00/00 v0.0}
+  *{package}{snapshot}    {2002/03/05 v1.14}
+  *{package}{float}       {2001/11/08 v1.3d}
+  *{package}{fancyvrb}    {2008/02/07 v0.0}
+  *{file}   {t1phv.fd}    {2001/06/04 v1/phv.}
+  *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
+  *{package}{epstopdf-base}{2016/05/15 v2.6}
+  *{package}{grfext}      {2016/05/16 v1.2}
+  *{file}   {epstopdf-sys.cfg}{2010/07/13 v1.3}
+  *{file}   {ucsencs.def} {2011/01/21 v3}
+  *{package}{nameref}     {2012/10/27 v2.43}
+  *{package}{gettitlestring}{2016/05/16 v1.5}
+  *{file}   {slides.out}  {0000/00/00 v0.0}
+  *{file}   {slides.out}  {0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {umsa.fd}     {2013/01/14 v3.01}
+  *{file}   {umsb.fd}     {2013/01/14 v3.01}
+  *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/audio-image-text.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/linear-relationships.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/classic_nnlm.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/classic_nnlm.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/softmax_layer.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/linear-relationships.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/Long_Short_Term_Memory.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/Long_Short_Term_Memory.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/bi-lstm-emeddings.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/brnn-unfolded.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/c2w-language-model.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {../article/img/inflection-generation.png}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_RWTH.pdf}{0000/00/00 v0.0}
+  *{file}   {./logos/logo_hltpr_rgb_HLT.pdf}{0000/00/00 v0.0}
+}

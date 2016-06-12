@@ -24,8 +24,7 @@ More details regarding the softmax layer are explained in section~\ref{subsec:so
 \begin{figure}[H]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{./img/c2w-language-model}
-  \caption{Neural network for language model. The C2W model is at the top, the word embeddings are then fed into an recurrent LSTM.
-  Finally }
+  \caption{Neural network for language model. The C2W model is at the top, the word embeddings are then fed into an recurrent LSTM.}
   \label{fig:c2w-language-model}
 \end{center}
 \end{figure}
@@ -33,21 +32,87 @@ More details regarding the softmax layer are explained in section~\ref{subsec:so
 
 \subsubsection{Evaluation}
 
-In the orginal paper~\cite{DBLP:journals/corr/LingLMAADBT15}, the perplexity~\ref{subsec:perplexity} is 
-used to evaluate the performance of the language model with different configurations. 
-However the perplexity cannot be used to compare models with different vocabularies,
+The original paper~\cite{DBLP:journals/corr/LingLMAADBT15} compares the performance of the language model 
+in terms of it's perplexity~\ref{subsec:perplexity}. To minimize the perplexity value means to have a better fitting language model.
+Perplexity cannot be used to compare models with different vocabularies,
 since there are fewer outcomes in the softmax, the global perplexity can decrease.
 
+In table~\ref{tab:perplexity} the perplexities and the parameter counts are displayed for different language models.
+The language model performance is tested on English, Portuguese, Catalan, German and Turkish; the data is extracted from wikipedia.
+Every word embedding $e_{w} \in \mathbb{R}^{d_w}$ is going to have $d_w = 50$ parameters.
+Therefore the model using a lookup table of word embedding contains at least $d_w \cross |V|$ parameters.
+The parameter count for the language model using C2W based embeddings depends on a few things. The number of parameters for each character
+representation $d_C = 50$, and the number of parameters $d_{CS} = 150$ in the LSTM state $s_i$. The C2W model contains 8 matrices of 
+size $d_{CS} \cross d_C + 2d_{CS}$ (One for each of the 4 decision gates in both LSTM's). Additionally there is the character lookup table 
+which has an entry for every character in the language $d_C \cross |C|$. For English and 618 this works out to $15000 + 30900$ parameters.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ l l l l l }
+  \hline
+             & \multicolumn{3}{|c|}{Fusional} &   \multicolumn{3}{|c|}{Agglutinative} \\ \hline
+  Perplexity   & English & Portugese & Catalan & German & Turkish \\
+  %5-gram KN    & 70.72   & 58.73     &   39.83 & 59.07  & 52.87   \\
+  Word Lookup  & 59.38   & 46.17     &   35.34 & 43.02  & 44.01   \\
+  C2W Model    & 57.39   & 40.92     &   34.92 & 41.94  & 32.88   \\
+  #Parameters  &         &           &         &        &         \\
+  Word Lookup  & 4.3M    & 4.2M      &  4.3M   & 6.3M   & 5.7M   \\
+  C2W Model    & 180K    & 178K      &  182K   & 183K   & 174K   \\
+
+\end{tabular}
+\end{center}
+\caption{Perplexities of different language models and the test configuration (From~\cite{DBLP:journals/corr/LingLMAADBT15}).}
+\label{tab:perplexity}
+\end{table}
+
 % ==========================================================================================
-% \subsection{Part-of-Speech Tagging}
+\subsection{Part-of-Speech Tagging}
+
+Part-of-Speech tagging is the process of labeling words as corresponding to a particular part of speech. A simple tagging would be
+to identify words as nouns, verbs, adjectives, adverbs, etc.
+The model receives a number of words $w_1,\dots,w_m$ as input, and transforms them into word embeddings. These embeddings are then processed
+in a bidirectional LSTM layer, just as described in section~\ref{subsec:bidir-rnn}. 
+In contrast to the combining layer of the C2W model, we don't just use the final state of the LSTM output states, but all states.
+The forward states $s^f_0,\dots,s^f_m$ and the backward states  $s^n_m,\dots,s^b_0$ are combined with  $l_i = \tanh(L^f s_i^f + L^b s^b_i + b_l)$.
+Where $L^f$, $L^b$, $b_l$ are the parameters of the combining layer. The output label for each word $w_i$ is then obtained from a softmax layer over
+all word labels.
+
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{./img/part-of-speech}
+  \caption{The arhitecture of the NN for part-of-speech tagging (From~\cite{DBLP:journals/corr/LingLMAADBT15}).}
+  \label{fig:c2w-language-model}
+\end{center}
+\end{figure}
+
+\subsubsection{Evaluation}
+
+The POS tagging is evaluated on the same languages as before. We compare the POS model with word embeddings from a lookup table
+as well as Stanford’s POS tagger with the C2W based POS tagger.
+\begin{table}
+\begin{center}
+\begin{tabular}{ l l l l l }
+  \hline
+  System       & \multicolumn{3}{|c|}{Fusional} &   \multicolumn{3}{|c|}{Agglutinative} \\ \hline
+               & English & Portugese & Catalan & German & Turkish \\
+  %5-gram KN    & 70.72   & 58.73     &   39.83 & 59.07  & 52.87   \\
+  Word Lookup  & 96.97   & 95.67     &  98.09  & 97.51  & 83.43   \\
+  C2W Model    & 97.36   & 97.47     &  98.92  & 98.08  & 91.59   \\
+  Stanford     & 97.32   & 97.54     &  98.76  & 97.92  & 87.31  \\
+
+\end{tabular}
+\end{center}
+\caption{Accuracy of the POS tagging in percent (From~\cite{DBLP:journals/corr/LingLMAADBT15}).}
+\label{tab:pos-eval}
+\end{table}
 
 
 % ==========================================================================================
-\subsection{Morphological inflection generation}
+\subsection{Morphological inflection generation} 
 
 Another application of C2W like model beyond language modeling is the morphological inflection generation~\cite{DBLP:journals/corr/FaruquiTND15}.
-The goal is to perform a lingustic transformation some examples of the inflections which this model seeks to generate can be seen in table~\ref{tab:inflections}.
-First stage is the \textbf{encoder}:\\
+The goal is to perform a lingustic transformation some examples of the inflections which this model seeks to 
+generate can be seen in table~\ref{tab:inflections}. First stage is the \textbf{encoder}:\\
 This part of the model is eqvivalent to the C2W model: Each word $w$ is broken up into it's characters $e_{c_1}^C, \dots, e_{c_m}^C$.
 Then a bidirectional LSTM layer is used and th result is composed into $e_{w}$.
 Second part is the \textbf{decoder}:\\

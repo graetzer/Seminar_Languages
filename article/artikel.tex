@@ -153,7 +153,7 @@
     \textit{Simon Gr\"atzer} \\[6ex]
     \Large
     Matrikelnummer 311673 \\[6ex]
-    23.05.2016
+    16.06.2016
 
     \vfill
     \Large Betreuer: Kazuki Irie
@@ -210,14 +210,12 @@
 %% Umgebung benutzen.
 %%
 
-
-
-
-
 \section{Conclusion}
 
 The model of composing word embeddings by composing characters shows that it is possible to avoid
-feature enginerring as well as costly lookup-tables.
+manual feature engineering as well as overly large lookup-tables. The experimental evaluation
+shows that the increased computational cost, when using the C2W model instead of a lookup table, are insignificant
+compared to e.g.\ the computatuions in the softmax layer.
 Using characters as the atomic unit of choice makes the model very simple to apply to many languages.
 As the experiments in~\cite{DBLP:journals/corr/LingLMAADBT15} show, lexical features can
 can be learned automatically by the language model. Large word lookup-tables

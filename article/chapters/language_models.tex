@@ -27,7 +27,7 @@ the context of the previous $n - 1$ words. Formally this is a $n - 1$ order Mark
 For a 1-gram sequence this is called an unigram, a 2-gram s a bigram, n = 3 is a trigram and so forth.
 One could estimate the conditional probabilities by counting all occurrences in the sample data:
 \[
-P(w_i\mid w_{i-(n-1)},\ldots,w_{i-1}) = \frac{\mathrm{count}(w_{i-(n-1)},\ldots,w_{i-1},w_i)}{\mathrm{count}(w_{i-(n-1)},\ldots,w_{i-1})}
+p(w_i\mid w_{i-(n-1)},\ldots,w_{i-1}) = \frac{\mathrm{count}(w_{i-(n-1)},\ldots,w_{i-1},w_i)}{\mathrm{count}(w_{i-(n-1)},\ldots,w_{i-1})}
 \]
 Of course this is very impractical, the number of possible sentences is too big. Additionally a training sample probably 
 won't contain all possible combinations and therefore it's not possible to calculate estimations for all of them in this way.
@@ -107,6 +107,8 @@ estimate a probability distribution for the word $w_i$ given the linguistic cont
 As with the n-gram models the context can be for example limited to a fixed number of previous words. In contrast to the
 simple counting model, a neural network can learn the complex non-local relationships between the word types in sequences.
 
+\subsubsection{Classical Neural Language Model}
+
 The classical neural language model architecture performs two tasks: First it projects the input words into the continuous vector space,
 secondly it computes the language model probability for the given context. These task can be performed by two 
 hidden layers~\cite{Schwenk:2007:CSL:1230156.1230409}. 
@@ -120,7 +122,7 @@ The projections of all words in the context of the previous $n-1$ words are conc
 the first hidden layer (called the projection layer) of the NNLM.
 
 A NNLM will always compute the probability for \textit{all} words contained in the vocabulary $V$. 
-This is performed by the second hidden layer and the output layer combined. 
+This is performed in combination by the second hidden layer and the output layer. 
 The hidden layer will compute $d_j = f(\sum_{l = i-n+1}^{i-1} e_{w_l} * m_{lj} + b_l) \forall j = 1 \dots H$, 
 where $H$ is the number of hidden neurons, $m_{lj}$ are the weights between the projection layer and the second hidden layer,
 $b_j$ is the activation bias of neuron $j$. This combines all the word embeddings $e_w$ into an $H$ dimensional representation.
