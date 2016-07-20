@@ -111,7 +111,7 @@
 \RequirePackage{rotating}
 \RequirePackage{colortbl}
 \RequirePackage{ragged2e}         % Flattersatz mit Trennung
-\RequirePackage{booktabs}         % Zusätzliche horizontale Linien mit passenden Abständen
+\RequirePackage{booktabs}         % Zusï¿½tzliche horizontale Linien mit passenden Abstï¿½nden
 \RequirePackage{array}     
 \RequirePackage{dcolumn}          % Zahlen erst am Dezimalpunkt ausrichten, dann linksbuendig
 \makeatletter 
@@ -122,14 +122,14 @@
 \newcolumntype{M}[1]{>{\centering\hspace{0pt}}m{#1}}               % vertical und horizontal zentriert spalte
 \newcolumntype{n}{>{\scriptsize}l}                                 % etwas kleinerer Kopf als normal
 \newcolumntype{N}{>{\normalsize}l}                                 %  normaler Kopf
-\newcolumntype{v}[1]{>{\scriptsize\RaggedRight\hspace{0pt}}p{#1}}  % Flattersatz angegebener Breite; Trennung auch im ersten Wort möglich 
-\newcolumntype{V}[1]{>{\normalsize\RaggedRight\hspace{0pt}}p{#1}}  % Flattersatz angegebener Breite; Trennung auch im ersten Wort möglich 
-\newcolumntype{t}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\scriptsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 90° gedreht
-\newcolumntype{R}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\normalsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 90° gedreht
-\newcolumntype{s}[1]{>{\begin{turn}{45}\begin{minipage}{#1}\scriptsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 45° gedreht
-\newcolumntype{S}[1]{>{\begin{turn}{45}\begin{minipage}{#1}\normalsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 45° gedreht
+\newcolumntype{v}[1]{>{\scriptsize\RaggedRight\hspace{0pt}}p{#1}}  % Flattersatz angegebener Breite; Trennung auch im ersten Wort mï¿½glich 
+\newcolumntype{V}[1]{>{\normalsize\RaggedRight\hspace{0pt}}p{#1}}  % Flattersatz angegebener Breite; Trennung auch im ersten Wort mï¿½glich 
+\newcolumntype{t}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\scriptsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 90ï¿½ gedreht
+\newcolumntype{R}[1]{>{\begin{turn}{90}\begin{minipage}{#1}\normalsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 90ï¿½ gedreht
+\newcolumntype{s}[1]{>{\begin{turn}{45}\begin{minipage}{#1}\scriptsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 45ï¿½ gedreht
+\newcolumntype{S}[1]{>{\begin{turn}{45}\begin{minipage}{#1}\normalsize\RaggedRight\hspace{0pt}}l<{\end{minipage}\end{turn}}}  % Spaltenkopf um 45ï¿½ gedreht
                                                                   % columntype X = p{...}, also raggedright
-\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}                 % tabularx Spalten rechtsbündig ausrichten
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}                 % tabularx Spalten rechtsbï¿½ndig ausrichten
 \newcolumntype{Z}{>{\centering\arraybackslash}X}                  % tabularx Spalten zentrieren
 
 % fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -234,10 +234,10 @@
     citecolor=black,       % cite Linkfarbe, std=green
     pagecolor=black,       % Color for links to other pages, std=red
     menucolor=black,       % Color for Acrobat menu items, std=red
-    breaklinks,            % Links über mehrere Zeilen möglich
+    breaklinks,            % Links ï¿½ber mehrere Zeilen mï¿½glich
     bookmarks,             % Acrobat Bookmarks erstellen
-    bookmarksopen=true,    % Bookmarks alle geöffnet darstellen
-    pdfpagemode=UseNone    % Acrobat Bookmarks beim Öffnen des Dokumentes ausblenden
+    bookmarksopen=true,    % Bookmarks alle geï¿½ffnet darstellen
+    pdfpagemode=UseNone    % Acrobat Bookmarks beim ï¿½ffnen des Dokumentes ausblenden
     % pdfpagemode=FullScreen % Dokument direkt im Full Screen Modus oeffnen
 ]{hyperref}
 
@@ -325,8 +325,8 @@
 \def\usw{u.s.w\onedot}
 
 %%%%% figure and table float handling  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand*{\fps@figure}{htbp} % zusätzliche option h für figure kann hier zentral gesetzt werden
-\renewcommand*{\fps@table}{htbp}  % zusätzliche option h für table kann hier zentral gesetzt werden
+\renewcommand*{\fps@figure}{htbp} % zusï¿½tzliche option h fï¿½r figure kann hier zentral gesetzt werden
+\renewcommand*{\fps@table}{htbp}  % zusï¿½tzliche option h fï¿½r table kann hier zentral gesetzt werden
 
 %%%%% font sizes and skips %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand*\@xii@ipt{12.1}
@@ -512,10 +512,10 @@
 \else
   \if@ngerman
     \addto\captionsngerman{%
-      \renewcommand*{\contentsname}{Übersicht}%
+      \renewcommand*{\contentsname}{ï¿½bersicht}%
       \renewcommand*{\figurename}{Abb.}%
       \renewcommand*{\tablename}{Tab.}%
-      \renewcommand*{\thankyou}{Danke für Ihre Aufmerksamkeit}
+      \renewcommand*{\thankyou}{Danke fï¿½r Ihre Aufmerksamkeit}
     }
   \fi
 \fi
@@ -603,9 +603,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
 \AtEndDocument{%
-  \if@blackslide
-    \BlackPage
-  \fi
 }
 \makeatother
 
@@ -667,7 +664,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Im Allgemeinen sollte stets die Stern-Form \newcommand* des 
 %% Befehls \newcommand benutzt werden, weil dann Fehler besser 
-%% behandelt werden. Fehlende schließende Schweifklammern werden 
+%% behandelt werden. Fehlende schlieï¿½ende Schweifklammern werden 
 %% dadurch von TeX bereits am Absatzende bemerkt.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% flyspell can read the local ispelldict variable to automatically change the dictionary, 

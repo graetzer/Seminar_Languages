@@ -128,8 +128,8 @@ where $H$ is the number of hidden neurons, $m_{lj}$ are the weights between the 
 $b_j$ is the activation bias of neuron $j$. This combines all the word embeddings $e_w$ into an $H$ dimensional representation.
 In the output layer this has to be scaled up to the vocabulary size again, 
 by computing $z_k = \sum_{j = 1}^{H} v_{kj} * d_j + b_k \forall k = 1 \dots |V|$, where $v_{kj}$ are the weights of the output layer.
-Since we have to transform this into a valid probability, the output layer uses a softmax function~\ref{subsec:softmax}, which
-will finally convert all $z_k$ values into probabilities $p_k$.
+Since we have to transform this into a valid probability, the output layer uses a softmax function 
+(introduced in section~\ref{subsec:softmax}), which will finally convert all $z_k$ values into probabilities $p_k$.
  
 \begin{figure}[H]
 \begin{center}
@@ -172,8 +172,8 @@ probability given the context: $p_k = p(w_i = k | w_{i-n+1}^{i-1})$.
 Since the softmax can only be computed for known words included in the vocabulary set $V$ it is not possible to handle words
 not included in $V$ during testing.
 These words are \textbf{Out Of Vocabulary} (OOV), the solution is to replace all of them with an special token word.
-The probability for this OOV token can be learned during the training stage, by replacing word types with low frequencies with the <OOV> token.
-During test time we can now use the <OOV> probabilities for any word not in the vocabulary $V$~\cite{DBLP:journals/corr/LingLMAADBT15}.
+The probability for this OOV token can be learned during the training stage, by replacing word types with low frequencies with the $<$OOV$>$ token.
+During test time we can now use the $<$OOV$>$ probabilities for any word not in the vocabulary $V$~\cite{DBLP:journals/corr/LingLMAADBT15}.
 
 For a language modeling task where there is not a closed Vocabulary, we will almost certainly encounter words which are not known from
 our training vocabulary set. It is therefore essential to apply a strategy like the above one to have a robust estimation

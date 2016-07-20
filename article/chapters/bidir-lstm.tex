@@ -69,7 +69,7 @@ Each LSTM replaces the parameters with the ones from $\mathcal{W}^f$ or $\mathca
   s_j &= o_j \odot \tanh(c_j) 
 \end{aligned}
 \end{equation}
-The forward LSTM yields the forward state sequence $s_{0}^f, \dots, s_{m}^f$ and the backward LSTM yields the state sequence $s_{m}^b, \dots, s_{0}^b$.
+The forward LSTM yields the forward state sequence $s_{1}^f, \dots, s_{m}^f$ and the backward LSTM yields the state sequence $s_{m}^b, \dots, s_{1}^b$.
 
 \subsubsection{Bidirectional LSTM's}
 \label{subsec:bidir-rnn}
@@ -99,7 +99,7 @@ For example in online speech recognition an output after every sentences is fine
 
 \subsection{Combining Forward-Backward Features}
 
-Finally the last states of the forward sequence $s_{m}^f$ and the backwards sequence $s_{0}^b$
+Finally the last states of the forward sequence $s_{m}^f$ and the backwards sequence $s_{1}^b$
 are linearly combined into the resulting word embedding $e_{w}^C$:
 \[
   e_{w}^C = D^f s_{m}^f + D^b s_{0}^b + b_d

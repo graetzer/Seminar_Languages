@@ -212,17 +212,22 @@
 
 \section{Conclusion}
 
-The model of composing word embeddings by composing characters shows that it is possible to avoid
-manual feature engineering as well as overly large lookup-tables. The experimental evaluation
-shows that the increased computational cost, when using the C2W model instead of a lookup table, are insignificant
-compared to e.g.\ the computatuions in the softmax layer.
-Using characters as the atomic unit of choice makes the model very simple to apply to many languages.
+The concept of generating word embeddings by composing characters shows that it is possible to reach
+state of the art results, with a magnitude less paramaters.
+Manual engineering of features is not a necessity even for such tasks as Part-Of-Speech tagging.
 As the experiments in~\cite{DBLP:journals/corr/LingLMAADBT15} show, lexical features can
-can be learned automatically by the language model. Large word lookup-tables
-can be reduced to one (much smaller) character lookup table, without sacrificing performance. 
-The model therefore avoids redundancies in word lookup tables. This is an additional advantage over
-morphenes as atomic units of words. The lookup table allows the model to scale better with
-larger amounts of data.
+can be learned automatically by the language model. Vocabulary-sized word lookup-tables
+can be reduced to one (much smaller) character lookup table which avoids redundancies.
+This allows the model to scale better with
+larger amounts of training data. This is an additional advantage over similar approaches using 
+morphenes as the atomic unit of words.
+Using characters as the atomic unit of choice makes the application of the C2W model simple for many languages.
+The nature of the C2W model also allows the handling of nonce words, which is not possible with other approaches.
+The increased computational cost when using the C2W model compared to lookup tables is shown to be
+insegnificant in many applications. For example in lagnuage modeling the computations in the intitial projection 
+layer are insignificant compared to the computations in the softmax layer.
+
+
 
 
 %% Tabellen werden mit der tabular Umgebung erzeugt. Mit der table
